@@ -1,12 +1,15 @@
 import gleeunit
 import gleeunit/should
+import took/router
+import wisp/testing
 
 pub fn main() {
   gleeunit.main()
 }
 
-// gleeunit test functions end in `_test`
-pub fn hello_world_test() {
-  1
-  |> should.equal(1)
+pub fn ping_test() {
+  let response = router.handle_request(testing.get("/ping", []))
+
+  response.status
+  |> should.equal(200)
 }
